@@ -1,0 +1,336 @@
+APP_NAME = Gitea: Go Git Service
+RUN_USER = root
+RUN_MODE = prod
+
+[repository]
+ROOT          = /var/snap/gitea/common/repositories/data
+SCRIPT_TYPE   = bash
+ANSI_CHARSET  =
+FORCE_PRIVATE = false
+
+[security]
+INTERNAL_TOKEN                    = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1MzY1MDcwNzh9.DABOKAmqZj_Z-8RI13BPVQK3An_45zMRvS1hbrscZz8
+DEFAULT_PRIVATE                   = last
+MAX_CREATION_LIMIT                = -1
+MIRROR_QUEUE_LENGTH               = 1000
+PULL_REQUEST_QUEUE_LENGTH         = 1000
+PREFERRED_LICENSES                = Apache License 2.0,MIT License
+DISABLE_HTTP_GIT                  = false
+USE_COMPAT_SSH_URI                = false
+INSTALL_LOCK                      = true
+# @FDEWREWR&*(
+SECRET_KEY                        = ZofBaAV1Tr77AeYjd6zs8w7i1VblowzNSZGkNg5GlkhBHyY9NnKMuGsdSeWLRz4z
+LOGIN_REMEMBER_DAYS               = 7
+COOKIE_USERNAME                   = gitea_awesome
+COOKIE_REMEMBER_NAME              = gitea_incredible
+REVERSE_PROXY_AUTHENTICATION_USER = X-WEBAUTH-USER
+MIN_PASSWORD_LENGTH               = 6
+IMPORT_LOCAL_PATHS                = false
+DISABLE_GIT_HOOKS                 = false
+
+[repository.editor]
+LINE_WRAP_EXTENSIONS   = .txt,.md,.markdown,.mdown,.mkd,
+PREVIEWABLE_FILE_MODES = markdown
+
+[repository.local]
+LOCAL_COPY_PATH = tmp/local-repo
+LOCAL_WIKI_PATH = tmp/local-wiki
+
+[repository.upload]
+ENABLED       = true
+TEMP_PATH     = /var/snap/gitea/common/repositories/tmp
+ALLOWED_TYPES = image/jpeg|image/png
+FILE_MAX_SIZE = 10
+MAX_FILES     = 5
+
+[repository.pull_request]
+WORK_IN_PROGRESS_PREFIXES =
+
+[ui]
+EXPLORE_PAGING_NUM    = 20
+ISSUE_PAGING_NUM      = 10
+FEED_MAX_COMMIT_NUM   = 5
+GRAPH_MAX_COMMIT_NUM  = 100
+CODE_COMMENT_LINES    = 4
+THEME_COLOR_META_TAG  = `#6cc644`
+MAX_DISPLAY_FILE_SIZE = 8388608
+SHOW_USER_EMAIL       = true
+DEFAULT_THEME         = gitea
+
+[ui.admin]
+USER_PAGING_NUM   = 50
+REPO_PAGING_NUM   = 50
+NOTICE_PAGING_NUM = 25
+ORG_PAGING_NUM    = 50
+
+[ui.user]
+REPO_PAGING_NUM = 15
+
+[ui.meta]
+AUTHOR      = Gitea - Git with a cup of tea
+DESCRIPTION = Gitea (Git with a cup of tea) is a painless self-hosted Git service written in Go
+KEYWORDS    = go,git,self-hosted,gitea
+
+[markdown]
+ENABLE_HARD_LINE_BREAK = false
+CUSTOM_URL_SCHEMES     =
+FILE_EXTENSIONS        = .md,.markdown,.mdown,.mkd
+
+[server]
+PROTOCOL                   = http
+DOMAIN                     = 10.141.244.38
+ROOT_URL                   = http://10.141.244.38:3000/
+HTTP_ADDR                  = 0.0.0.0
+HTTP_PORT                  = 3000
+REDIRECT_OTHER_PORT        = false
+PORT_TO_REDIRECT           = 80
+UNIX_SOCKET_PERMISSION     = 666
+LOCAL_ROOT_URL             = %(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/
+DISABLE_SSH                = false
+START_SSH_SERVER           = false
+BUILTIN_SSH_SERVER_USER    =
+SSH_DOMAIN                 = 10.141.244.38
+SSH_LISTEN_HOST            =
+SSH_PORT                   = 22
+SSH_LISTEN_PORT            = %(SSH_PORT)s
+SSH_ROOT_PATH              =
+SSH_SERVER_CIPHERS         = aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, arcfour256, arcfour128
+SSH_SERVER_KEY_EXCHANGES   = diffie-hellman-group1-sha1, diffie-hellman-group14-sha1, ecdh-sha2-nistp256, ecdh-sha2-nistp384, ecdh-sha2-nistp521, curve25519-sha256@libssh.org
+SSH_SERVER_MACS            = hmac-sha2-256-etm@openssh.com, hmac-sha2-256, hmac-sha1, hmac-sha1-96
+SSH_KEY_TEST_PATH          = /var/snap/gitea/current/sshkeytest
+SSH_KEYGEN_PATH            = ssh-keygen
+SSH_BACKUP_AUTHORIZED_KEYS = true
+SSH_EXPOSE_ANONYMOUS       = false
+MINIMUM_KEY_SIZE_CHECK     = false
+OFFLINE_MODE               = false
+DISABLE_ROUTER_LOG         = false
+CERT_FILE                  = custom/https/cert.pem
+KEY_FILE                   = custom/https/key.pem
+STATIC_ROOT_PATH           = /var/snap/gitea/current/static
+APP_DATA_PATH              = /var/snap/gitea/common/data
+ENABLE_GZIP                = false
+ENABLE_PPROF               = false
+PPROF_DATA_PATH            = data/tmp/pprof
+LANDING_PAGE               = home
+LFS_START_SERVER           = true
+LFS_CONTENT_PATH           = /var/snap/gitea/current/custom/data/lfs
+LFS_JWT_SECRET             = l--EUbtaZSXKKgcVaicQZdT9Fyu5L9KJ-btM879ucRk
+LFS_HTTP_AUTH_EXPIRY       = 20m
+
+[ssh.minimum_key_sizes]
+ED    = 256
+ECDSA = 256
+RSA   = 2048
+DSA   = 1024
+
+[database]
+DB_TYPE             = postgres
+HOST                = {{ db.host }}:{{ db.port }}
+NAME                = {{ db.dbname }}
+USER                = {{ db.user }}
+PASSWD              = {{ db.password }}
+SSL_MODE            = disable
+ITERATE_BUFFER_SIZE = 50
+LOG_SQL             = true
+
+[indexer]
+ISSUE_INDEXER_PATH   = /var/snap/gitea/common/indexers/issues.bleve
+REPO_INDEXER_ENABLED = false
+REPO_INDEXER_PATH    = indexers/repos.bleve
+UPDATE_BUFFER_LEN    = 20
+MAX_FILE_SIZE        = 1048576
+
+[admin]
+DISABLE_REGULAR_ORG_CREATION = false
+
+[openid]
+ENABLE_OPENID_SIGNIN = true
+WHITELISTED_URIS     =
+BLACKLISTED_URIS     =
+ENABLE_OPENID_SIGNUP = false
+
+[service]
+ACTIVE_CODE_LIVE_MINUTES                      = 180
+RESET_PASSWD_CODE_LIVE_MINUTES                = 180
+REGISTER_EMAIL_CONFIRM                        = false
+DISABLE_REGISTRATION                          = false
+ALLOW_ONLY_EXTERNAL_REGISTRATION              = false
+REQUIRE_SIGNIN_VIEW                           = false
+ENABLE_NOTIFY_MAIL                            = false
+ENABLE_REVERSE_PROXY_AUTHENTICATION           = false
+ENABLE_REVERSE_PROXY_AUTO_REGISTRATION        = false
+ENABLE_CAPTCHA                                = false
+CAPTCHA_TYPE                                  = image
+RECAPTCHA_SECRET                              =
+RECAPTCHA_SITEKEY                             =
+DEFAULT_KEEP_EMAIL_PRIVATE                    = true
+DEFAULT_ALLOW_CREATE_ORGANIZATION             = true
+DEFAULT_ENABLE_DEPENDENCIES                   = true
+ENABLE_TIMETRACKING                           = true
+DEFAULT_ENABLE_TIMETRACKING                   = true
+DEFAULT_ALLOW_ONLY_CONTRIBUTORS_TO_TRACK_TIME = true
+NO_REPLY_ADDRESS                              = noreply.example.org
+
+[webhook]
+QUEUE_LENGTH    = 1000
+DELIVER_TIMEOUT = 5
+SKIP_TLS_VERIFY = false
+PAGING_NUM      = 10
+
+[mailer]
+ENABLED            = false
+SEND_BUFFER_LEN    = 100
+SUBJECT            = %(APP_NAME)s
+HOST               =
+DISABLE_HELO       =
+HELO_HOSTNAME      =
+SKIP_VERIFY        =
+USE_CERTIFICATE    = false
+CERT_FILE          = custom/mailer/cert.pem
+KEY_FILE           = custom/mailer/key.pem
+FROM               =
+USER               =
+PASSWD             =
+SEND_AS_PLAIN_TEXT = false
+USE_SENDMAIL       = false
+SENDMAIL_PATH      = sendmail
+SENDMAIL_ARGS      =
+
+[cache]
+ADAPTER  = memory
+INTERVAL = 60
+HOST     =
+ITEM_TTL = 16h
+
+[session]
+PROVIDER          = file
+PROVIDER_CONFIG   = data/sessions
+COOKIE_NAME       = i_like_gitea
+COOKIE_SECURE     = false
+ENABLE_SET_COOKIE = true
+GC_INTERVAL_TIME  = 86400
+SESSION_LIFE_TIME = 86400
+
+[picture]
+AVATAR_UPLOAD_PATH      = /var/snap/gitea/common/pictures/avatars
+AVATAR_MAX_WIDTH        = 4096
+AVATAR_MAX_HEIGHT       = 3072
+GRAVATAR_SOURCE         = gravatar
+DISABLE_GRAVATAR        = false
+ENABLE_FEDERATED_AVATAR = true
+
+[attachment]
+ENABLED       = true
+PATH          = /var/snap/gitea/common/attachments
+ALLOWED_TYPES = image/jpeg|image/png|application/zip|application/gzip
+MAX_SIZE      = 4
+MAX_FILES     = 5
+
+[time]
+FORMAT =
+
+[log]
+ROOT_PATH  = /var/snap/gitea/current/custom/log
+MODE       = file
+BUFFER_LEN = 10000
+LEVEL      = Info
+
+[log.console]
+LEVEL =
+
+[log.file]
+LEVEL          =
+LOG_ROTATE     = true
+MAX_LINES      = 1000000
+MAX_SIZE_SHIFT = 28
+DAILY_ROTATE   = true
+MAX_DAYS       = 7
+
+[log.conn]
+LEVEL            =
+RECONNECT_ON_MSG = false
+RECONNECT        = false
+PROTOCOL         = tcp
+ADDR             =
+
+[log.smtp]
+LEVEL     =
+SUBJECT   = Diagnostic message from server
+HOST      =
+USER      =
+PASSWD    =
+RECEIVERS =
+
+[log.database]
+LEVEL  =
+DRIVER =
+CONN   =
+
+[cron]
+ENABLED      = true
+RUN_AT_START = false
+
+[cron.update_mirrors]
+SCHEDULE = @every 10m
+
+[cron.repo_health_check]
+SCHEDULE = @every 24h
+TIMEOUT  = 60s
+ARGS     =
+
+[cron.check_repo_stats]
+RUN_AT_START = true
+SCHEDULE     = @every 24h
+
+[cron.archive_cleanup]
+ENABLED      = true
+RUN_AT_START = true
+SCHEDULE     = @every 24h
+OLDER_THAN   = 24h
+
+[cron.sync_external_users]
+RUN_AT_START    = false
+SCHEDULE        = @every 24h
+UPDATE_EXISTING = true
+
+[git]
+DISABLE_DIFF_HIGHLIGHT       = false
+MAX_GIT_DIFF_LINES           = 1000
+MAX_GIT_DIFF_LINE_CHARACTERS = 5000
+MAX_GIT_DIFF_FILES           = 100
+GC_ARGS                      =
+
+[git.timeout]
+MIGRATE = 600
+MIRROR  = 300
+CLONE   = 300
+PULL    = 300
+GC      = 60
+
+[mirror]
+DEFAULT_INTERVAL = 8h
+MIN_INTERVAL     = 10m
+
+[api]
+ENABLE_SWAGGER     = true
+MAX_RESPONSE_ITEMS = 50
+
+[i18n]
+LANGS = en-US,zh-CN,zh-HK,zh-TW,de-DE,fr-FR,nl-NL,lv-LV,ru-RU,uk-UA,ja-JP,es-ES,pt-BR,pl-PL,bg-BG,it-IT,fi-FI,tr-TR,cs-CZ,sr-SP,sv-SE,ko-KR
+NAMES = English,简体中文,繁體中文（香港）,繁體中文（台灣）,Deutsch,français,Nederlands,latviešu,русский,Українська,日本語,español,português do Brasil,polski,български,italiano,suomi,Türkçe,čeština,српски,svenska,한국어
+
+[U2F]
+APP_ID         =
+TRUSTED_FACETS =
+
+[other]
+SHOW_FOOTER_BRANDING           = false
+SHOW_FOOTER_VERSION            = true
+SHOW_FOOTER_TEMPLATE_LOAD_TIME = true
+
+[markup.asciidoc]
+ENABLED         = false
+FILE_EXTENSIONS = .adoc,.asciidoc
+RENDER_COMMAND  = asciidoc --out-file=- -
+IS_INPUT_FILE   = false
+

@@ -1,0 +1,12 @@
+includes:  # if you use any interfaces, add them here
+  - 'layer:snap'
+  - 'interface:pgsql'
+options:
+  snap:
+    gitea:
+      channel: edge
+      devmode: false
+      jailmode: false
+      dangerous: false
+      classic: false
+      revision: null
